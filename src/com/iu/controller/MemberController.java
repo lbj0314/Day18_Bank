@@ -14,7 +14,7 @@ public class MemberController {
 	private MemberDAO memberDAO;
 	private MemberInput	memberInput;
 	private BankView bankView;
-
+	private AccountController accountController;
 
 	public MemberController() {
 
@@ -23,6 +23,7 @@ public class MemberController {
 		memberDAO = new MemberDAO();
 		memberInput = new MemberInput();
 		bankView = new BankView();
+		accountController = new AccountController();
 	}
 
 	public void start() {
@@ -63,11 +64,14 @@ public class MemberController {
 					e.printStackTrace();
 					memberDTO = null;
 				}
-				String msg2 = "Login Fail";
+				
 				if (memberDTO != null) {
-					msg2 = "Login Success";
+					bankView.view("Login Success");
+					accountController.start(memberDTO);
+				} else {
+					bankView.view("Login Fail");
 				}
-				bankView.view(msg2);
+				
 				break;
 			default:
 				check =! check;

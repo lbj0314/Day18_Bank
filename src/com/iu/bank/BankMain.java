@@ -11,8 +11,8 @@ import com.iu.util.DBConnector;
 public class BankMain {
 
 	public static void main(String[] args) {
-		FrontController fc = new FrontController();
-		fc.start();
+		MemberController mc = new MemberController();
+		mc.start();
 		
 		
 	
